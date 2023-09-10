@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <style>
+    html, body{
+        margin: 0;
+        padding: 0;
+        height: 100%;
+    }
+   
+    header{
+        width: 100%;
+        height: 30%;
+        background-color: aqua;
+        /*flex box는 요소 크기가 불분명, 동적일 경우 각 요소를 정렬 할수 있는 css속성*/
+        /* flexbox를 사용하기 위해 부모요소인 header에 display: flex; 적용 이렇게 하면 header가 컨테이너가됨*/
+        
+        /* 자식요소인 텍스트는 flex 아이템이 된다.*/
+        display: flex; 
+        /* 가로 중앙 정렬 */
+        align-items: center;
+        /* 세로 중앙 정렬 */
+        justify-content: center;
+    }
+    
+    nav{
+        width: 100%;
+        height: 60%;
+        background-color: skyblue;
+        /*flex box는 요소 크기가 불분명, 동적일 경우 각 요소를 정렬 할수 있는 css속성*/
+        /* flexbox를 사용하기 위해 부모요소인 section에 display: flex; 적용 이렇게 하면 header가 컨테이너가됨*/
+       
+        /* 자식요소인 items는 flex 아이템이 된다.*/
+        display: flex; 
+        /* 컨테이너인 section을 세로정렬 */
+        flex-direction: column;
+        /* 각 아이템 간의 간격을 70px로 설정한다.*/
+        gap: 70px;
+        /* 가로 중앙 정렬 */
+        align-items: center;
+      
+    }
+    .items{
+        width: 160px;
+        height: 150px
+    }
+
+    footer{
+        width: 100%;
+        height: 20%;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap: 10px
+    }
+    .item1{
+        width: 5%;
+        height: 30%;
+    }
+    
+    
+ 
+  </style>
+    <title>이성남의 자기소개서</title>
+</head>
+<body>
+    <header>
+        <h1>자기소개서</h1>
+    </header>
+    
+    <nav>
+        <h2>
+            <ol>
+                <!-- target="_blank" 현재 페이지에서 넘어가는 것이 아닌 새 페이지를 생성-->
+                <li class="items"><a target="_blank" href="file:///C:/Users/dltjd/WebProgramming/WebProgramming/PersonalStatement.html/introduce.html" title="이성남의 자기소개로 이동">자기소개</a></li>
+                <li class="items"><a target="-blank" href="file:///C:/Users/dltjd/WebProgramming/WebProgramming/PersonalStatement.html/personality.html" title="이성남 성격의 장단점으로 이동">성격의 장단점</a></li>
+                <li class="items"><a target="_blank" href="file:///C:/Users/dltjd/WebProgramming/WebProgramming/PersonalStatement.html/career.html" title="이성남의 경력사항으로 이동">경력사항</a></li>    
+            </ol>
+        </h2>
+    </nav>
+
+    <footer>
+        <!-- src는 이미지의 위치, alt 이미지가 없을경우 출력되는 문자-->
+        <img class="item1" 
+        src="C:\Users\dltjd\WebProgramming\WebProgramming\PersonalStatement.html\캡처.PNG"
+        alt="Github Image">
+        <h4 class="item2"><a title="깃허브 주소로 이동" href="https://github.com/dltjdska32/WebProgramming" target="_blank">웹 프로그래밍 소스를 보기위한 깃허브 주소</a></h4>
+    </footer>
+
+
+</body>
+</html>
