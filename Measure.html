@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>
+            
+            function findingMeasure(n){
+                var num = parseInt(n);
+                var b = true;
+               
+               while(b){
+
+                // isNaN() 은 숫자일경우 false 반환, 숫자가 아닐경우 true 반환
+                if(isNaN(num) || num <= 0){
+                    alert("잘못 입력하셨습니다. 다시 입력하십시오.")
+                    n = prompt("약수를 구할 양의 정수를 입력하십시오.", "");
+                    num = parseInt(n);
+                    continue;                          
+                }
+                b = false;
+            }
+
+                document.write(num + "의 약수 입니다 : ");
+                for(var i = 1; i <= num; i++){
+                    if(num % i == 0){
+                        document.write(i);
+                        if(i == num){
+                            break;
+                        }
+                        document.write(", ");
+                    }
+                }
+            
+        
+        }
+    </script>
+    
+    <title>약수 구하기</title>
+</head>
+<body>
+
+    <h2> 약수구하기 프로그램 입니다. </h2>
+   
+    <hr>
+    <script>
+
+        var n = prompt("약수를 구할 양의 정수를 입력하십시오.", "");
+      
+        findingMeasure(n)
+        
+    </script>
+    
+</body>
+</html>
