@@ -2,29 +2,57 @@
 <html lang="en">
 <head>
     <style>
-        html, body{margin: 0; padding: 0; height: 100%;}
-        header{
+        html, body{margin: 0; padding: 0; height: 100%;
+                background-color: mistyrose;}
+        header{ 
             width: 100%;
             height: 20%;
             display: flex;
             align-items: center;
+            font-style: italic;  /*글자 기울이기*/
+            font-weight: bold; /* 글자 굵기 굵게*/ 
+            font-size: 4em; 
+         
+            /* font family글자 모양 선택  Georgia 글꼴을 찾고 있다면 사용, 없다면 
+                Times New Roman을 찾고 있다면 사용, 없다면 웹브라우저에서 fantasy 글꼴사용*/
+             font-family: Georgia, 'Times New Roman', Times, fantasy;
         }
+
+        nav{
+            width: 100%;
+            height: 80%;
+          
+        }
+
+        nav ul{
+            list-style-type: square;
+        }
+        .item1{
+            font-size: 2em;
+            color: blue;
+        }
+        
+        .item2{
+            font-size: 1.7em;
+            color: rgb(41, 165, 90);
+        }
+
     </style>
     
     <title>성격의 장단점</title>
 </head>
 <body>
     <header>
-        <h2>성격의 장단점</h2>
+        성격의 장단점
     </header>
 
     <hr>
     
-    <section>
+    <nav>
         <h4>
             <ul>
                 <li>
-                    저의 큰 장점은 다른 사람을 배려하는 마음입니다.<br>
+                    저의 큰 <span class="item1">장점</span>은 다른 사람을 <span class="item2">배려하는 마음</span>입니다.<br>
                     그 예로 저는 쓰레기 분리수거장에서 일을 하면서 연배가 있으신 분들과 일을<br>
                     했었습니다.  저는 연배가 있으신 분들의 수고를 줄이기 위해 제 할당량을 <br>
                     빠르게 마치고 그분들을 도와드리곤 했습니다.또한 무거운 폐기물은 제가 <br> 
@@ -35,7 +63,8 @@
                 </li>
                 <br>
                 <li>
-                    저의 단점은 고민을 많이 하는 경향이 있어 어떠한 문제를 주면 시간을 많이<br>
+                    저의 <span class="item1">단점</span>은 <span class="item2">고민을 많이 하는 경향</span>
+                    이 있어 어떠한 문제를 주면 시간을 많이<br>
                     소요 한다는 점입니다<br>
             
                         예를 들어, 대학교 과제를 수행할 때 최상의 선택을 하기 위해 많은 시간을 <br>
@@ -49,6 +78,6 @@
                 </li>
             </ul>
         </h4>
-    </section>
+    </nav>
 </body>
 </html>

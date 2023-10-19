@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <style>
+        html, body{
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+         header{
+            width: 100%;
+            height: 30%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        section{
+            width: 100%;
+            height: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+
+        fieldset{
+            width: 500px;
+            height: 400px;
+        }
+
+
+        form{
+            display: flex;
+            gap: 50px;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .group{
+            display: flex;
+         
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .label_text {
+            display: inline-block; /* 라벨을 블록처럼 만들되 인라인 요소로 유지 */
+            width: 100px;          /* 적절한 너비로 설정 (이 값을 조절하여 적합한 너비를 찾아야 함) */
+            text-align: right;    /* 텍스트를 오른쪽으로 정렬 */
+            margin-right: 10px;   /* 콜론과 입력란 사이에 약간의 공간 제공 */
+        }
+
+        input[type="submit"]{
+            width: 150px;
+            height: 50px;
+            font-size: 20px;
+            background-color: #53ad56;
+            border: none; 
+            color: white;
+            cursor: pointer;
+        }
+        
+       footer{  
+            margin-top: 40px;
+            height: 20%;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+       }
+
+    </style>
+   
+    <title>로그인 창</title>
+</head>
+<body>
+    <header>
+        <h1>이성남 자기소개서 로그인</h1>
+    </header>
+
+    <section>
+        <fieldset>
+
+                <form name="login" method="post"
+                 action="file:///C:/Users/dltjd/WebProgramming/WebProgramming/PersonalStatement.html/personalstatement.html">
+                    
+                        <h3>로그인</h3>
+
+                    <!-- 아이디, 패스워드 그리고 input을 줄맞춤 하기 위해 div 로 아이디와 패스워드를 그룹으로 나눈다.-->
+                    <div class="group">    
+                        
+                        <label>
+                            <!-- span은 아무런 기능 없이 해당 텍스트를 css로 스타일링하기 위한 목적-->
+                            <span class="label_text"> 아이디 :  </span> 
+                            <input type="text" size="15" value="" placeholder="아이디를 입력하세요.">
+                        </label> 
+                        
+                    </div>
+
+                 
+                    <div class="group">
+                        <label for="pass">
+                            <span class="label_text"> 비밀번호 :  </span>  
+                            <input id="pass" type="password" size="15" placeholder="비밀번호를 입력하세요." value="">
+                        </label >  
+                    </div>
+                
+                        <input type="submit" value="로그인" >
+
+                </form>
+        </fieldset>
+    </section>
+    
+    <footer>
+        <form name="sign_up" method="post" 
+        action="file:///C:/Users/dltjd/WebProgramming/WebProgramming/PersonalStatement.html/signup.html" >
+            <input type="submit" value="회원가입">
+
+        </form>
+    </footer>
+</body>
+</html>

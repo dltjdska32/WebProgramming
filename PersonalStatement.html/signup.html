@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>
+        function checkPassLen(event){
+            var pass = document.getElementById('pass').value;
+
+            var len = pass.length;
+
+            if(len < 8){
+                alert('비밀번호가 8자 이하입니다. 다시 입력하세요.')
+                event.preventDefault();
+                return false;
+            }
+
+            return true;
+        }
+        
+        function checkValues(event){
+
+            //4를 num에 저장
+            var num = parseInt(4)
+
+
+            // 폼에 있는 모든 입력값들을 불러온다.
+            var id = document.getElementById('id').value;
+            var pass = document.getElementById('pass').value;
+            var phoneNum = document.getElementById('phoneNum').value;
+            var email = document.getElementById('email').value;
+
+            //아래 4개의 if문중 하나 이상이 실행되어 num이 1감소된다면 마지막 if문에서 경고문을 출력한다.
+            if(id === ""){
+                num--;
+            }
+
+            if(pass === ""){
+                num--;
+            }
+
+            if(phoneNum === ""){
+                num--
+            }
+
+            if(email ===""){
+                num--;
+            }
+
+            i+f(num != 4){
+                alert("회원 정보가 모두 입력되지 않았습니다.\n 다시 확인해주세요");
+                event.preventDefault();
+                return false;
+            }
+
+            return true;
+
+        }
+
+        function checkPass(event){
+
+            // pass에  input type=pass 에 입력된 값을 저장.
+            var pass = document.getElementById('pass').value;
+            
+           
+            /*
+                1.  특수문자를 specialCharacter에 저장 
+                2.  정규표현식을 사용하기위해 시작과 끝에 / 를 추가 (정규표현식이란. 문자열에 포함된 특정 문자를 찾기 위해 사용되는 패턴)
+                    .test() 함수를 쓸때 pass와 대조를 하기위해 대괄호 안에 특수문자를 넣는다.
+                
+                    -> 대괄호가 없다면, .test()함수를 사용할때 문자열과 정확히 일치해야 true를 반환
+                        대괄호가 있따면, .test()함수를 사용할때 대괄호안에 문자 하나만 일치해도 true를 반환  
+            */
+            var specialCharacter = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
+
+            //.test() 함수를 사용하여 pass에 입력된 값중 specialCharacter에 저장된 특수문자가 있는지를 찾는다
+            // 만약 특수문자가 없으면 if문 실행
+            if(!specialCharacter.test(pass)){
+                alert('비밀번호에 특수문자가 입력되어 있지 않습니다.\n다시 입력해주세요.');
+              
+                //
+                event.preventDefault();
+
+                return false;
+            }
+
+            return true;
+        }
+
+
+    </script>
+    <style>
+        html, body{
+            margin: 0;
+            padding: 0;
+            height: 100%; 
+        }
+
+        header{
+            width: 100%;
+            height: 20%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        
+        form{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .group{
+            display: flex;
+         
+            align-items: center;
+            margin-bottom: 50px;
+        }
+
+        .label_text {
+            display: inline-block; /* 라벨을 블록처럼 만들되 인라인 요소로 유지 */
+            width: 100px;          /* 적절한 너비로 설정 (이 값을 조절하여 적합한 너비를 찾아야 함) */
+            text-align: right;    /* 텍스트를 오른쪽으로 정렬 */
+            margin-right: 20px;   /* 콜론과 입력란 사이에 약간의 공간 제공 */
+        }
+
+        
+        input[type="submit"]{
+            width: 150px;
+            height: 50px;
+            font-size: 20px;
+            background-color: #53ad56;
+            border: none; 
+            color: white;
+            cursor: pointer;
+        }
+        
+
+    </style>
+ 
+    <title>회원가입을 위한 창입니다.</title>
+</head>
+<body onload="alert('회원가입시 비밀번호에 최소 하나의 특수문자를 추가하세요. \n 비밀번호는 8자 이상 입력해야합니다..')">
+    <header>
+        <h2>회원가입</h2>
+    </header>
+
+    <hr>
+    <section>
+        <form name="sign_up"    
+            action="file:///C:/Users/dltjd/WebProgramming/WebProgramming/PersonalStatement.html/login.html" 
+            onsubmit="return checkValues(event) && checkPass(event) && checkPassLen(event); " 
+              method="post">
+            <div class="group">
+                
+                    <label>
+                        <!-- span은 아무런 기능 없이 해당 텍스트를 css로 스타일링하기 위한 목적-->
+                        <span class="label_text"> 아이디 :  </span> 
+                    </label> 
+                    
+                    <input id="id" type="text" size="15" value="" placeholder="사용할 아이디 입력.">
+                  
+            </div>  
+            
+            <div class="group">    
+                    <label for="pass">
+                        <span class="label_text"> 비밀번호 :  </span>  
+                    </label >  
+                    
+                    <input id="pass" type="password" size="15" placeholder="사용할 비밀번호 입력." value="">
+                   
+            </div>
+
+            <div class="group">
+                <label>
+                    <span class="label_text">핸드폰 번호 : </span>
+                </label>
+                
+                <input id="phoneNum" type="text" value="" size="15" placeholder="핸드폰 번호 입력.">
+               
+            </div>
+                  
+            <div class="group">
+                <label>
+                    <span class="label_text">이메일 : </span>
+                </label>
+                
+                <input id="email" type="text" value="" size="15" placeholder="이메일 입력.">
+                
+            </div>
+
+            <div class="group">
+                <label>
+                    <span class="label_text">생년월일 :</span>
+                </label>  
+                
+                <input type="date" value="1997-11-19">
+                           
+            </div>
+ 
+            <div  class="group">
+                <input type="submit" value="회원가입">
+
+            </div>
+        
+        
+        </form>
+    
+    </section>
+</body>
+</html>
