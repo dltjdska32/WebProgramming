@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <script>
+    // 계산기 함수 
+
+    //연산자를 입력하기 전 숫자를 담을 임시 문자열
+    let currentNum = '';
+    // 연산자를 입력한 후 currentNum을 priviousNum에 담고 currentNum을 초기화
+    let previousNum = '';
+    //연산자를 담을 문자열
+    let operator = '';
+
+
+    //숫자 버튼을 누를경우 해당 버튼과 일치하는 값을 currentNum에 계속해서 추가
+    function appendNum(value) {
+        
+        currentNum += value;
+        //text에 현재 입력값을 출력한다.
+        document.getElementById('numAppend').value = currentNum;
+    }
+
+    //연산자를 클릭할경우 실행하는 함수 ,연산자를 매개변수로 받을경우 그값을 operator 문자열에 담는다.
+    // 연산자를 숫자를 입력하고 연산자를 클릭하면 currentNum에 저장된 값을 previousNum으로 넘기고 currentNum을 초기화
+    function setOperator(op) {
+
+    // 만약 currentNum에 입력된 값이 없다면 함수종료
+    if (currentNum === ''){ 
+        alert("입력값이 없습니다. 다시 입력하세요.")
+     return;
+   }
+    previousNum = currentNum;
+    currentNum = '';
+    operator = op;
+    //text를 공백으로 초기화
+    document.getElementById('numAppend').value = '';
+}
+
+    //실제로 계산을 실행하는 함수 '=' 버튼을 클릭할 경우 실행
+    function calculate() {
+    
+        if (previousNum === '' || currentNum === '') {
+        alert("입력값이 없습니다. 다시 입력하세요.")
+        return;
+    }
+
+
+    //각 operator에 저장된 문자열과 일치하는 값을 찾아 계산을 하고 currentNum에 담는다.
+    switch (operator) {
+        case '+':
+            currentNum = (parseFloat(previousNum) + parseFloat(currentNum)).toString();
+            break;
+        case '-':
+            currentNum = (parseFloat(previousNum) - parseFloat(currentNum)).toString();
+            break;
+        case '*':
+            currentNum = (parseFloat(previousNum) * parseFloat(currentNum)).toString();
+            break;
+        case '/':
+            currentNum = (parseFloat(previousNum) / parseFloat(currentNum)).toString();
+            break;
+    }
+
+    //text에 currentNum에 저장된 결과값을 보여준다.
+    document.getElementById('numAppend').value = currentNum;
+    //이후 추가 계산을 위해 previousNum과 operator을 초기화 한다.
+    previousNum = '';
+    operator = '';
+}
+
+// c 버튼을 클릭할경우 실행 모든 입력값을 초기화 하고 text값을 초기화 한다.
+    function clearDisplay() {
+    currentNum = '';
+    previousNum = '';
+    operator = '';
+    document.getElementById('numAppend').value = '';
+}
+
+
+   </script>
+
+   <style>
+    html, form{
+        display: flex;
+        flex-direction: column;
+    }
+
+    #numAppend {
+    width: 10%;
+    padding: 10px;
+    margin-bottom: 10px;
+    }
+  
+   </style>
+    <title>계산기</title>
+</head>
+<body>
+
+    <form name="calculatorForm">
+        <input type="text" id="numAppend" readonly>
+        
+        <br>
+
+        <div>
+                <input type="button" onclick="appendNum('1')" value="1">
+                <input type="button" onclick="appendNum('2')" value="2">
+                <input type="button" onclick="appendNum('3')" value="3">
+                <input type="button" onclick="setOperator('+')" value="+">
+            
+            <br>
+            
+            
+                <input type="button" onclick="appendNum('4')" value="4">
+                <input type="button" onclick="appendNum('5')" value="5">
+                <input type="button" onclick="appendNum('6')" value="6">
+                <input type="button" onclick="setOperator('-')" value="-">
+            
+            <br>
+            
+        
+                <input type="button" onclick="appendNum('7')" value="7">
+                <input type="button" onclick="appendNum('8')" value="8">
+                <input type="button" onclick="appendNum('9')" value="9">
+                <input type="button" onclick="setOperator('*')" value="*">
+            
+            <br>
+            
+                <input type="button" onclick="appendNum('0')" value="0">
+                <input type="button" onclick="calculate()" value="=">
+                <input type="button" onclick="clearDisplay()" value="C">
+                <input type="button" onclick="setOperator('/')" value="/">
+        </div>  
+    </form>
+  
+</body>
+</html>

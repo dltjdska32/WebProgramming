@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8">
+    <script>
+      
+
+      function addCheckbox(){
+
+        // 체크박스를 추가할 위치를 불러온다.
+        var list = document.getElementById("list");
+        // 텍스트에 입력된 값을 가져온다.
+        var musicTitle = document.getElementById("title").value;
+
+        if(musicTitle === ""){
+          alert("노래 제목을 입력하지 않았습니다. \n노래 제목을 입력하세요.");
+          return;
+        }
+
+        //input요소(체크박스)를 생성한다.
+        var checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.id = musicTitle //체크 박스 고유 식별 이름
+        checkbox.value = "check" // 체크할경우 check가 서버에 전송
+
+
+        //라벨 생성
+        var label = document.createElement("label");
+        label.htmlFor = musicTitle; //텍스트 음악 제목을 가진 체크박스와 for를 통해 연결
+                                    //label의 for요소를 통해 checkbox의 musicTitle과 연결
+
+        label.appendChild(document.createTextNode(musicTitle)); //라벨에 입력받은 음악제목을 생성
+
+        //체크박스를 추가할 위치 ("list")에 만들어놓은 체크박스와 라벨을 생성
+        list.appendChild(checkbox);
+        list.appendChild(label);
+        list.appendChild(document.createElement("br"));
+
+ 
+
+        //마지막으로 text에 입력된 값을 다시 공백으로 바꾼다.
+        document.getElementById("title").value = "";
+
+       
+        // 로컬스토리지에 저장되어있는 키 값들을 storageList에 저장한다.
+        let storageKeyList = Object.keys(localStorage);
+
+        // storageList에 저장되어있는 키는 입력순서(숫자)로 저장되어있다.
+        // storageList에는 값이 정렬되어 저장되어 있지 않기 때문에 해당값을 정렬해준다.
+        storageKeyList.sort();
+
+        //로컬스토리지의 키값이 작은 순서대로 재설정한다(0부터 로컬스토리지의 길이 - 1 만큼)
+        for(var i = 0; i < localStorage.length; i++){
+          var value = localStorage.getItem(storageKeyList[i]);
+          localStorage.removeItem(storageKeyList[i]);
+          var iString = i.toString();
+          localStorage.setItem(iString, value);
+
+        }
+
+        // test에 입력된 값을 로컬스토리지 에 추가한다.
+        // 로컬스토리지에는 text에 입력된 순서대로 키값을 입력받기때문에 
+        // 로컬스토리지의 크기를 키값으로한다.
+        var num = localStorage.length;
+        localStorage.setItem(num, musicTitle);
+      }
+
+
+
+
+      function removeCheckbox(){
+       
+
+        //체크박스들을 querySelectorAll()함수를 사용해서 배열 형식으로 만든다.
+        let list = document.querySelectorAll('input[type="checkbox"]');
+
+        //해당 체크박스들을 순회한다.
+        for(var i = 0; i < list.length; i++){
+            
+            //체크박스에 체크된 경우, 해당 채크박스의 라벨과 체크박스를 지운다.
+            //list는 checkbox -> label -> br 순으로 저장되어있다.
+            if(list[i].checked){
+                list[i].nextElementSibling.remove(); //checkbox 의 다음요소를 지운다. 즉 label 제거
+                list[i].nextElementSibling.remove(); //checkbox의 다음요소를 지운다. 즉, br제거
+                list[i].remove(); // 마지막으로 checkbox를 제거
+
+
+                // 로컬스토리지의 키값은 입력된 순서로 저장되어있다 (0 ~ 로컬스토리지 길이 - 1)
+                // 그렇기 때문에 list에 저장된 값의 순서와 로컬스토리지에 저장된 키값과 밸류의 순서는 같다.
+                // 그렇기 때문에 제거된 체크박스의 순서와 같은 로컬스토리지의 키값과 밸류를 제거한다.
+                var iString = i.toString();
+                localStorage.removeItem(iString);
+
+              }
+
+        }
+
+
+         //로컬스토리지에 저장된 모든키를 배열로 받아온다.
+         let storageList = Object.keys(localStorage);
+
+
+        //  storagelist의 값들은 순서가 정렬되지 않았기 때문에 sort()함수를 써서 순서를 정렬해준다.
+        storageList.sort();
+
+        //storageList에 저장된 키값을과 매칭되는 밸류를 가져오고 로컬스토리지에 저장된 값을 지운후, 
+        // 키값을 다시 설정하여 로컬스토리지에 저장.
+        for(var i = 0; i < storageList.length; i++){
+
+          var value = localStorage.getItem(storageList[i]);
+          localStorage.removeItem(storageList[i]);
+          var iString = i.toString();
+          localStorage.setItem(iString, value);
+
+        }     
+
+
+
+      
+      }
+
+  
+
+
+      // 웹프로그램 시작시 웹스토리지에 저장된 정보들을 출력하는 함수
+      function start(){
+
+
+        for(var i = 0; i < localStorage.length; i++){
+          var iString = i.toString();
+          var musicTitle = localStorage.getItem(iString);
+
+          var list = document.getElementById("list");
+
+
+           //input요소(체크박스)를 생성한다.
+          var checkbox = document.createElement("input");
+          checkbox.type = "checkbox";
+          checkbox.id = musicTitle //체크 박스 고유 식별 이름
+          checkbox.value = "check" // 체크할경우 check가 서버에 전송
+
+
+          //라벨 생성
+          var label = document.createElement("label");
+          label.htmlFor = musicTitle; //텍스트 음악 제목을 가진 체크박스와 for를 통해 연결
+                                      //label의 for요소를 통해 checkbox의 musicTitle과 연결
+          label.appendChild(document.createTextNode(musicTitle))
+        
+          //체크박스를 추가할 위치 ("list")에 만들어놓은 체크박스와 라벨을 생성
+          list.appendChild(checkbox);
+          list.appendChild(label);
+          list.appendChild(document.createElement("br"));
+
+
+        }
+      }
+
+
+
+   
+
+   
+
+    </script>
+    
+    <title>음악 플레이 리스트</title>
+</head>
+<body>
+  <script>
+    // 프로그램을 시작할때 start()함수를 실행  
+    window.onload = start;
+    
+  </script>
+
+
+
+    <h1>나의 음악 플레이 리스트</h1>
+
+    <hr>
+    
+    입력창에 노래 제목을 입력한 후, 추가 버튼을 클릭할 경우 <br>
+    해당 노래가 체크박스 형식으로 추가됩니다. <br> 추가적으로 
+    플레이 리스트에서 제거하고 싶은 노래가 있다면 체크박스를 <br>
+    클릭한 후, 제거 버튼을 클릭하면 체크박스가 제거됩니다.<br>
+
+    <p>
+
+    
+
+    <form name="playList">
+        <label>
+            노래 제목 :
+        </label>
+
+        <input type="text" id="title" value="" placeholder="노래 제목을 입력하세오.">
+       
+        <input type="button" id="addList" value="추가" onclick="addCheckbox()">
+        <input type="button" id="removeList" value="제거" onclick="removeCheckbox(); ">
+
+        <br>
+
+        <!--체크박스를 추가할 위치-->
+        <div id="list">
+
+        </div>
+
+
+    </form>
+    
+   
+</body>
+</html>

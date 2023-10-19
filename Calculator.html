@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+    function plus(){
+        //getElementById().value -> 특정 id를 가진요소를 찾고 value값을 가져온다.
+        var num1 = document.getElementById("num1").value;
+        var num2 = document.getElementById("num2").value;
+     
+        //숫자를 입력하지 않거나 공백일경우 실행
+        //isNaN() 숫자일경우 false 반환, 숫자 아닐경우 true 반환
+        if(isNaN(num1) || isNaN(num2) || num1 == "" || num2 == ""){
+            alert("잘못입력하셨습니다. 다시 입력해주세요.")
+            return;
+        }
+        
+        var result = parseFloat(num1) + parseFloat(num2);
+        
+     
+        //getElementByID() 함수를 통해서 해당 아이디값을 찾고 해당아이디의 value값을 
+        // num1 과 num2의 값을 더한 result값으로 변환.
+        document.getElementById("result").value = result.toString();
+
+    }
+
+
+    function minus(){
+        //getElementById().value -> 특정 id를 가진요소를 찾고 value값을 가져온다.
+        var num1 = document.getElementById("num1").value;
+        var num2 = document.getElementById("num2").value;
+     
+        //숫자를 입력하지 않거나 공백일경우 실행
+        //isNaN() 숫자일경우 false 반환, 숫자 아닐경우 true 반환
+        if(isNaN(num1) || isNaN(num2) || num1 == "" || num2 == ""){
+            alert("잘못입력하셨습니다. 다시 입력해주세요.")
+            return;
+        }
+        
+        var result = parseFloat(num1) - parseFloat(num2);
+        
+     
+        //getElementByID() 함수를 통해서 해당 아이디값을 찾고 해당아이디의 value값을 
+        // num1 과 num2의 값을 더한 result값으로 변환.
+        document.getElementById("result").value = result.toString();
+
+    }
+
+
+    function divide(){
+        //getElementById().value -> 특정 id를 가진요소를 찾고 value값을 가져온다.
+        var num1 = document.getElementById("num1").value;
+        var num2 = document.getElementById("num2").value;
+     
+        //숫자를 입력하지 않거나 공백일경우 실행
+        //isNaN() 숫자일경우 false 반환, 숫자 아닐경우 true 반환
+        if(isNaN(num1) || isNaN(num2) || num1 == "" || num2 == ""){
+            alert("잘못입력하셨습니다. 다시 입력해주세요.")
+            return;
+        }
+        
+        var result = parseFloat(num1) / parseFloat(num2);
+        
+     
+        //getElementByID() 함수를 통해서 해당 아이디값을 찾고 해당아이디의 value값을 
+        // num1 과 num2의 값을 더한 result값으로 변환.
+        document.getElementById("result").value = result.toString();
+
+    }
+
+    function multiplication(){
+        //getElementById().value -> 특정 id를 가진요소를 찾고 value값을 가져온다.
+        var num1 = document.getElementById("num1").value;
+        var num2 = document.getElementById("num2").value;
+     
+        //숫자를 입력하지 않거나 공백일경우 실행
+        //isNaN() 숫자일경우 false 반환, 숫자 아닐경우 true 반환
+        if(isNaN(num1) || isNaN(num2) || num1 == "" || num2 == ""){
+            alert("잘못입력하셨습니다. 다시 입력해주세요.")
+            return;
+        }
+        
+        var result = parseFloat(num1) * parseFloat(num2);
+        
+     
+        //getElementByID() 함수를 통해서 해당 아이디값을 찾고 해당아이디의 value값을 
+        // num1 과 num2의 값을 더한 result값으로 변환.
+        document.getElementById("result").value = result.toString();
+
+    }
+    
+
+    function progress(){
+
+        if(document.getElementById("result").value == ""){
+            alert("결과값이 없습니다. 계산을 먼저 해주세요.")
+            return;
+        }
+        
+        //num1의 값을 result의 값으로 변환
+        document.getElementById("num1").value = document.getElementById("result").value;
+        
+        //num2와 result의 값을 공백으로 초기화.
+        document.getElementById("num2").value = "";
+        document.getElementById("result").value="";
+   }
+
+   function quit(){
+        //form 상의 모든 text를 공백으로 초기화
+        document.getElementById("num1").value = "";
+        document.getElementById("num2").value = "";
+        document.getElementById("result").value = "";
+   }
+</script>   
+<style>
+  html, form{
+    display: flex;
+    flex-direction: column;
+  }  
+
+  .label-text{
+    display: inline-block;
+    width: 150px;
+    text-align: right;
+    margin-right: 20px;
+    margin-bottom: 20px;
+  }
+
+  .group{
+    /*버튼은 기본적으로 inline-block*/
+    text-align: right;
+    width: 345px;
+    margin-bottom: 20px;    
+  }
+
+</style>
+    <title>계산기</title>
+</head>
+<body>
+    <h1>계산기</h1>
+    
+    <hr>
+
+    계산하고자 하는 값을 '숫자 1' 과 '숫자 2'에 입력한 후, <br>
+    '+, -, /, X' 버튼을 클릭할 경우, '답'에 출력 됩니다.<br>    
+    추가적으로 '계속' 버튼을 클릭할 경우, 계산한 결과값을 가지고 계속해서 계산합니다. <br>
+    그리고 '종료' 버튼을 클릭할 경우, '숫자 1', '숫자 2', '답' 의 값들이 초기화 됩니다. <br>
+   
+
+    <br>
+    <br>
+
+    <form>
+        <label> <span class="label-text">숫자 1 : </span>
+            <input type="text" id = "num1" value="">
+        </label> 
+       
+        <div class="group">
+            <input type="button" value="+" onclick="plus()">
+            <input type="button" value="-" onclick="minus()">
+            <input type="button" value="/" onclick="divide()">
+            <input type="button" value="x" onclick="multiplication()">
+        </div>
+       
+        <label> <span class="label-text"> 숫자 2 : </span> 
+             <input type="text" id="num2" value="">
+        </label>
+      
+        <label>  <span class="label-text"> 답 : </span>
+             <input type="text" id="result" value="">
+        </label>    
+
+        <div class="group">
+            <input type="button" value="계속" onclick="progress()">
+            <input type="button" value="종료" onclick="quit()">
+        </div>   
+        
+    </form>
+</body>
+
+
+</html>
