@@ -1,0 +1,43 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f7f8fa;
+    color: #333;
+    padding: 5px;
+}
+
+p {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+#checkboxList label:hover {
+    color: #007BFF;
+}
+
+#checkboxList {
+    margin-top: 20px;
+}
+
+#checkboxList input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+#checkboxList label {
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+
+input[type="button"] {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+input[type="button"]:hover {
+    background-color: #0056b3;
+}

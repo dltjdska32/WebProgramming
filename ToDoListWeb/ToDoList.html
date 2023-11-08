@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="#">
+    <title>ToDoList</title>
+
+    <link rel="stylesheet" href="ToDoList.css" />
+  
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/index.global.min.js'></script>
+      
+    
+</head>
+<body>
+    <section id='calendar'> 
+        <!--  달력이 들어갈 자리 -->
+    </section>
+      
+    <aside>
+       
+    
+        <fieldset>
+          
+          <p> 날짜 클릭 후, 시간, 예약 알람, 스케줄 입력하세요. <br>(예약 알람 입력의 경우 일정 당일로 부터 며칠전에 알리고 싶은지 입력해주세요.)</p>
+      
+            <div id="inputs">
+                <label for="appt">시간 :</label>
+                <!--required는 해당 시간이 꼭 채워져야 한다는것 안채워질경우 메시지 출력 변수에 반환시 24시간으로 반환 ex) 22:00-->
+                <input type="time" id="appt" name="appt" min="00:00" max="12:00" required />
+    
+                <label for="alarm">예약 알람 :</label>
+                <input type="text" value="" placeholder="기간(일) 입력" id="alarm" >
+            </div>
+
+            <div id = "inputs">
+                <label for="input">일정 :</label>
+                <!--required는 해당 시간이 꼭 채워져야 한다는것 안채워질경우 메시지 출력-->
+                <input type="text" value="" placeholder="일정을 입력하세요." id="input" >  
+            </div>
+       </fieldset>
+      
+       <iframe src="ScheduleList.html" id="childWeb"></iframe>
+
+       <iframe src="RemovedSchedule.html" id="childWeb2"></iframe>
+       
+    </aside>
+          
+
+    <script src="ToDoList.js" type="module"></script>
+
+
+</body>
+</html>
