@@ -1,0 +1,86 @@
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	
+<h2>GCD 프로그램</h2>
+
+<hr>
+<form method="post">
+	
+	<label for="num1"> 숫자 1 : </label>
+	<input type="text" id="num1" name="num1" value="">
+	<br>
+	
+	<label for="num2"> 숫자 2 : </label>
+	<input type="text" id="num2" name="num2" value="">
+	<br>
+	
+	<input type="button" value="클릭" onclick="changeData()">
+	
+</form>
+
+<hr>
+
+<div id="informationPrint">
+	
+</div>
+
+
+
+<script>
+	var request = null;
+	
+	function createRequest(){
+		try{
+			request = new XMLHttpRequest();
+		} catch (failed) {
+			request = null;
+		}
+		
+		if(request == null){
+			alert("Error creating request object!");
+		}
+	}
+	
+	
+	function changeData() {
+	   createRequest();
+
+	    var num1 = document.getElementById('num1').value;
+	    var num2 = document.getElementById('num2').value;
+	    
+	    if (num1 === "" || num2 === "") {
+        alert("숫자를 입력하세요.");
+        return;
+   		 }
+	
+	    var qry1 = "num1=" + num1 + "&num2=" + num2;
+	
+	    var url = 'AjaxExample.jsp';
+	
+	    request.open('POST', url, true);
+	    // 서버로부터 응답이 오면 getInform 함수를 실행한다 따라서 send(qry1) 함수가 실행되고 getInform()함수가 실행된다.
+	    request.onreadystatechange = getInform;
+	    request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	
+	    request.send(qry1);
+	    
+	    
+//	    document.getElementById('num1').value = "";
+//	    document.getElementById('num2').value = "";
+		
+	} 
+	
+	function getInform(){
+		if(request.readyState == 4 && request.status == 200){
+			document.getElementById('informationPrint').innerHTML = request.responseText;
+		} else {
+			document.getElementById('informationPrint').innerHTML = 'Error: preSearch Failed';
+		}
+	}
+	
+</script>
+
+</body>
+</html>
