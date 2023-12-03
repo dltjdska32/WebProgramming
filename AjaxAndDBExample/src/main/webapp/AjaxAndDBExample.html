@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h2> 예제 프로그램 </h2>
+	<hr>
+	
+	<form method="post">
+		<label for="id"> id : </label>
+		<input type="text" value="" id="id" name="name">
+		
+		<br>
+		
+		<label for="pass"> pass :</label>
+		<input type="password" value="" id="pass" name="pass">
+		
+		<input type="button" value="확인" onclick="changeData()">
+		<br>
+		
+		<label for="list"> 증명서 : </label>
+		<input type="text" id="list" list="certificate">	
+		<datalist id="certificate">
+			<option value="재적증명서"></option>
+			<option value="학적증명서"></option>
+			<option value="졸업증명서"></option>
+		</datalist>
+		
+		<br>
+		
+		<label for="sNum"> 학번 : </label>
+		<input type="text" id="sNum" name="sNum">
+		
+		
+	
+	</form>
+
+<script>
+	var request = null;
+	
+	function createRequest(){
+		try{
+			request = new XMLHttpRequest();
+		} catch (failed) {
+			request = null;
+		}
+		
+		if(request == null){
+			alert("Error creating request object!");
+		}
+	}
+	
+	
+	
+	function changeData() {
+	   createRequest();
+
+	    var id = document.getElementById('id').value;
+	    var pass = document.getElementById('pass').value;
+	    
+	    if (id === "" || pass === "") {
+        alert("정보를 입력해주세요.");
+        return;
+   		 }
+	
+	    var qry1 = "id=" + id + "&pass=" + pass;
+	
+	    var url = 'AjaxAndDBExample.jsp';
+	
+	    request.open('POST', url, true);
+	    // 서버로부터 응답이 오면 getInform 함수를 실행한다 따라서 send(qry1) 함수가 실행되고 getInform()함수가 실행된다.
+	    request.onreadystatechange = getInform;
+	    request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	
+	    request.send(qry1);
+	    
+	    
+//	    document.getElementById('num1').value = "";
+//	    document.getElementById('num2').value = "";
+		
+	} 
+	
+	function getInform(){
+		if(request.readyState == 4 && request.status == 200){
+			 var sNumResponse = stripHTMLTags(request.responseText);
+			document.getElementById('sNum').value = sNumResponse.trim();
+		} else {
+			document.getElementById('sNum').value = 'Error: preSearch Failed';
+		}
+	}
+	
+	  function stripHTMLTags(html) {
+            var doc = new DOMParser().parseFromString(html, 'text/html');
+            return doc.body.textContent || "";
+        }
+	
+</script>
+
+</body>
+</html> 
